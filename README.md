@@ -49,3 +49,16 @@ Although the count files were reduced in size, they are still somewhat large (on
 
 ## Original Data Sources
 The mouse counts were derived from https://singlecell.broadinstitute.org/single_cell/study/SCP1711/mouse-colon-stroma-inflammation#study-summary and the yeast counts and gold standard network were derived from https://zenodo.org/record/5272314.
+
+## Package citations
+
+1. Harris, C. R. et al. Array programming with NumPy. Nature 585, 357–362 (2020).
+2. McKinney, W. Data Structures for Statistical Computing in Python. in 56–61 (2010). doi:10.25080/Majora-92bf1922-00a.
+3. Hagberg, A., Swart, P. & S Chult, D. Exploring network structure, dynamics, and function using networkx. https://www.osti.gov/biblio/960616 (2008).
+4. Schmitt, P. et al. GReNaDIne: A Data-Driven Python Library to Infer Gene Regulatory Networks from Gene Expression Data. Genes 14, 269 (2023).
+5. Hunter, J. D. Matplotlib: A 2D Graphics Environment. Computing in Science & Engineering 9, 90–95 (2007).
+6. Virtanen, P. et al. SciPy 1.0: fundamental algorithms for scientific computing in Python. Nat Methods 17, 261–272 (2020).
+7. Hao, Y. et al. Integrated analysis of multimodal single-cell data. Cell 184, 3573-3587.e29 (2021).
+8. Matrix: Sparse and Dense Matrix Classes and Methods. https://cran.r-project.org/web/packages/Matrix/index.html
+9. Wickham H, François R, Henry L, Müller K, Vaughan D (2023). dplyr: A Grammar of Data Manipulation. https://dplyr.tidyverse.org, https://github.com/tidyverse/dplyr.
+10. Baran, Y. et al. MetaCell: analysis of single-cell RNA-seq data using K-nn graph partitions. Genome Biol 20, 206 (2019).
