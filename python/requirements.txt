@@ -1,0 +1,6 @@
+GReNaDIne==0.0.21
+matplotlib==3.6.2
+networkx==2.8.8
+numpy==1.23.4
+pandas==1.5.1
+scipy==1.10.1
