@@ -7,7 +7,7 @@ Methods for network evaluation
 """
 
 def prepare_gs_result(gs_file_name):
-    gs_df = pd.read_csv(gs_file_name)
+    gs_df = pd.read_csv(gs_file_name, index_col=0, sep="\t")
     gs_rank = rank_GRN(gs_df)
     gs_edge_list = gs_rank.drop(["rank"], axis=1).rename(columns={"score": "IS_REGULATED"})
     gs_edge_list["IS_REGULATED"] = gs_edge_list["IS_REGULATED"].abs().astype("int")
@@ -19,7 +19,7 @@ def get_jaccard_index(dataframes, descriptors, n):
         returns the Jaccard index for the top n edges across the networks.
     """
     assert len(dataframes) >= 2, "Need at least 2 dataframes"
-    processed_dfs = [df["rank"].rename(columns={"rank": d}) for df, d in zip(dataframes, descriptors)]
+    processed_dfs = [df[["rank"]].rename(columns={"rank": d}) for df, d in zip(dataframes, descriptors)]
     joined = processed_dfs[0]
     for df in processed_dfs[1:]:
         joined = joined.join(df, how="outer")
@@ -35,4 +35,4 @@ def get_sccs(G, top=100):
 
 def get_communities(G, threshold=1, random_state=1):
     communities = nx.community.louvain_communities(G, seed=random_state)
-    return list(set.union(*list(filter(lambda x: len(x) < threshold, communities))))
+    return list(set.union(*list(filter(lambda x: len(x) >= threshold, communities))))
