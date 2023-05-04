@@ -31,18 +31,21 @@ There are some package dependencies that need to be installed for R, which are l
 
 
 ## Running Files
+### R Workflow
 In order to generate MetaCell assignments from R scripts, they must be run interactively and sequentially. The diagram below gives the workflow that must be follows.
 
 ![image](https://user-images.githubusercontent.com/19377828/236118265-7c1cf613-ced9-4649-939f-d1bfeca3c5c4.png)
 
+### Demo Files for Quick Testing of Metacells
+We provide two counts files with reduced geneset for quick testing of the metacell generation script (`generate_metacells.R`), located in `R`>`demo_data`. `mouse_counts_demo.txt` and `yeast_counts_demo.txt` are reduced counts matrices for mouse and yeast scRNAseq datasets, respectively. These files can be directly used with `generate_metacells.R` to generate the mapping csv file. To accomplish that, import counts matrix filename should be changed to either `mouse_counts_demo.txt` or `yeast_counts_demo.txt`.
+
+### Running Python
+
 We have provided example output from the R scripts in the Python module, so the Python component can be run entirely independently from the R scripts. The python module can be executed by simply executing `main.py` from the root directory of the module, that is, `./python`.
 
-It is worth noting that the input files have been shrunken considerably (by removing a random sample of non-transcription factor genes from the counts matrices) and the parameterization for the GENIE3 graph construction algorithm are set to construct a small number of trees with a low depth. Therefore, the results of this script will differ considerably from those presented in our paper. Replacing the input count files with the original data sources, the parameterizations with those presented in our paper, and the bulk/single cell CSV files with assignments generated from R scripts should give comporable results.
+It is worth noting that the input files have been shrunken considerably (by removing a random sample of non-transcription factor genes from the counts matrices) and the parameterization for the GENIE3 graph construction algorithm are set to construct a small number of trees with a low depth. Therefore, the results of this script will differ considerably from those presented in our paper. Replacing the input count files in `./python/resources` with the original data sources, GENIE3 parameters with those presented in our paper, and the bulk/single cell CSV files in `./python/resources` with assignments generated from R scripts should give comporable results. 
 
 Although the count files were reduced in size, they are still somewhat large (on the order of 50 MB) in order for some amount of signal to be captured, therefore running the Python module will not be instantaneous. On our hardware (12 GB RAM, GPU not utilized) it took about 160 seconds to execute.
 
 ## Original Data Sources
 The mouse counts were derived from https://singlecell.broadinstitute.org/single_cell/study/SCP1711/mouse-colon-stroma-inflammation#study-summary and the yeast counts and gold standard network were derived from https://zenodo.org/record/5272314.
-
-## Demo Files for Quick Testing of Metacells
-We provide two counts files with reduced geneset for quick testing of the metacell generation script (`generate_metacells.R`), located in `R`>`demo_data`. `mouse_counts_demo.txt` and `yeast_counts_demo.txt` are reduced counts matrices for mouse and yeast scRNAseq datasets, respectively. These files can be directly used with `generate_metacells.R` to generate the mapping csv file. To accomplish that, import counts matrix filename should be changed to either `mouse_counts_demo.txt` or `yeast_counts_demo.txt`.
