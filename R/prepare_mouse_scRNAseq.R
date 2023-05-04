@@ -5,7 +5,10 @@
 #   mouse single-cell RNA-seq experiment by Jasso et al. 
 #   (doi: 10.1371/journal.pbio.3001532)
 
-# Load necessary libraries
+# Install and load necessary packages
+install.packages('Seurat')
+install.packages('Matrix')
+
 library(Seurat)
 library(Matrix)
 

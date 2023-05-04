@@ -7,6 +7,11 @@
 # Code source: this code was adapted from the Metacell package tutorial:
 #   https://tanaylab.github.io/metacell/articles/a-basic_pbmc8k.html
 
+# Install and load necessary packages
+if (!require("BiocManager")) install.packages('BiocManager') 
+BiocManager::install("tanaylab/metacell")
+install.packages("dplyr")
+
 library("metacell")
 library(dplyr)
 
