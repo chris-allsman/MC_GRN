@@ -7,13 +7,13 @@ Our code has two components: a collection of R scripts used to generate MetaCell
 ## Environment
 Due to package dependencies, the R scripts are only compatible with MacOS or Linux systems. We ran into difficulties running the scripts on Ubuntu (or more specifically, WSL2), so we recommend running on MacOS if possible. In particular, code was run on MacOS 12.3.
 
-There are no such operating system requirements for the Python module, although it was only tested on Windows 11.
+There are no such operating system requirements for the Python module, although it was only tested on Windows 11. We have provided a [Colab notebook](#running-python-on-colab) if there are any issues running the Python module locally.
 
 The language versions we used were:
   - R version 4.2.1
   - Python version 3.10.7
 
-There are some package dependencies that need to be installed for Python, and are given in `python/requirements.txt` and listed below. All requirements can be installed via `pip install -r /path/to/requirements.txt` from the base directory. 
+There are some package dependencies that need to be installed for Python, which are given in `python/requirements.txt` and listed below. All requirements can be installed via `pip install -r /path/to/requirements.txt` from the base directory. 
 
 - GReNaDIne version 0.0.21
 - matplotlib version 3.6.2
@@ -21,6 +21,8 @@ There are some package dependencies that need to be installed for Python, and ar
 - numpy version 1.23.4
 - pandas version 1.5.1
 - scipy version 1.10.1
+
+There is also a transitive dependency on `pygraphviz` for visualizing graph results, which may require executing `pip install pygraphviz` and/or installing `graphviz` locally. If there are issues with generating visualizations, we have provided a Colab notebook which is verified to run.
 
 There are some package dependencies that need to be installed for R, which are listed below. All requirements can be installed via running the installation lines of code at the top of each R script needing these libraries. 
 
@@ -32,7 +34,7 @@ There are some package dependencies that need to be installed for R, which are l
 
 ## Running Files
 ### R Workflow
-In order to generate MetaCell assignments from R scripts, they must be run interactively and sequentially. The diagram below gives the workflow that must be follows.
+In order to generate MetaCell assignments from R scripts, they must be run interactively and sequentially. The diagram below gives the workflow that must be followed.
 
 ![image](https://user-images.githubusercontent.com/19377828/236118265-7c1cf613-ced9-4649-939f-d1bfeca3c5c4.png)
 
@@ -46,6 +48,10 @@ We have provided example output from the R scripts in the Python module, so the 
 It is worth noting that the input files have been shrunken considerably (by removing a random sample of non-transcription factor genes from the counts matrices) and the parameterization for the GENIE3 graph construction algorithm are set to construct a small number of trees with a low depth. Therefore, the results of this script will differ considerably from those presented in our paper. Replacing the input count files in `./python/resources` with the original data sources, GENIE3 parameters with those presented in our paper, and the bulk/single cell CSV files in `./python/resources` with assignments generated from R scripts should give comporable results. 
 
 Although the count files were reduced in size, they are still somewhat large (on the order of 50 MB) in order for some amount of signal to be captured, therefore running the Python module will not be instantaneous. On our hardware (12 GB RAM, GPU not utilized) it took about 160 seconds to execute.
+
+### Running Python on Colab
+
+We have also provided a Google Colab notebook containing the code defined in the Python module at https://colab.research.google.com/drive/187TOcZexDtm7zhtNm-RBeAoErPGR_wm7?usp=sharing. To run it, all files in the directory `./python/resources` from this repository must be added to a directory `./resources` in the working directory of the runtime. Cells under the header "Package Installation" and "Utility Functions" must be executed first, but the remaining three sections can be executed independently.
 
 ## Original Data Sources
 The mouse counts were derived from https://singlecell.broadinstitute.org/single_cell/study/SCP1711/mouse-colon-stroma-inflammation#study-summary and the yeast counts and gold standard network were derived from https://zenodo.org/record/5272314.
